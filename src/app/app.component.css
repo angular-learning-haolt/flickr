@@ -1,0 +1,22 @@
+#f-navbar {
+	background: #000;
+}
+.authen__login {
+	background: #000;
+	border: none;
+}
+footer {
+	background: #000;
+}
+footer a {
+	color: #fff;
+}
+section {
+    position: relative;
+}
+.retro {
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    width: 40%;
+}
