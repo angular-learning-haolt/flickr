@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
 	public navs: Array<{ title: string, route: string }>;
+	public hasLogin : boolean = false;
 
 	constructor() { }
 
@@ -25,15 +26,11 @@ export class HeaderComponent implements OnInit {
 				title: 'My Souls',
 				route: 'my-souls'
 			}
-			// {
-			// 	title: 'Checkout',
-			// 	route: 'checkout'
-			// },
-			// {
-			// 	title: 'Checkout Notice',
-			// 	route: 'checkout/notice'
-			// }
 		]
+	}
+
+	onLogOut() {
+		localStorage.removeItem('user');
 	}
 
 }
