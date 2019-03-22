@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
-// import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
 	{
@@ -14,10 +13,10 @@ const routes: Routes = [
 		redirectTo: '',
         pathMatch: 'full'
 	},
-	// {
-	// 	path:'login',
-	// 	component: LoginComponent
-	// },
+	{
+		path:'auth',
+		loadChildren:'./auth/auth.module#AuthModule'
+	},
 	// {
  //        path: '',
  //        redirectTo: 'home',
