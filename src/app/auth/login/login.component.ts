@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 			password: password
 		};
 		console.log(name, password);
-		if (name == 'admin' && password == 'admin123') {
+		if (name == 'admin' && password == 'admin') {
 			localStorage.setItem('user', JSON.stringify(user));
 			this.router.navigate(['photos']);
 		}

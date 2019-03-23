@@ -26,11 +26,18 @@ export class HeaderComponent implements OnInit {
 				title: 'My Souls',
 				route: 'my-souls'
 			}
-		]
+		];
+		// this.checkLogin();
 	}
 
 	onLogOut() {
 		localStorage.removeItem('user');
 	}
+
+	// checkLogin() {
+	// 	if (localStorage.getItem('user')) {
+	// 		this.hasLogin = true
+	// 	}
+	// }
 
 }

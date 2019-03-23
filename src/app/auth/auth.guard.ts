@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
-export class AuthGuard implements CanActivate {
-  	CanActivate(
-  		next: ActivatedRouteSnapshot,
-  		state: RouterStateSnapshot
-  	) : Observable<boolean> | Promise<boolean> | boolean
-  	{
-  		return false;
-  	}
+export class AuthGuard /* implements CanActivate */ {
+
+    constructor(
+        private router: Router
+    ) { }
+
+    // CanActivate(
+    //     next: ActivatedRouteSnapshot,
+    //     state: RouterStateSnapshot
+    // ): Observable<boolean> | Promise<boolean> | boolean {
+    //     if (localStorage.getItem('user')) {
+    //         return true;
+    //     }
+    //     else {
+    //         // this.router.navigate(['photos']);
+    //         return false;
+    //     }
+    // }
 }
