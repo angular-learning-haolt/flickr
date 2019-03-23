@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject,combineLatest, BehaviorSubject } from 'rxjs';
-import { map, switchMap  } from 'rxjs/operators';
+import { map  } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,38 +9,38 @@ import { map, switchMap  } from 'rxjs/operators';
 
 export class PhotoService {
 
-	
-
-	public API: string = 'https://developers.zomato.com/api/v2.1/categories';
-	public apiUrl: string = "https://developers.zomato.com/api/v2.1/";
-  	public apiKey: string = "3f57537ef8bf80c54889ecb539f34230";
-
-  	categoryFilter$:BehaviorSubject<string | void>;
-  	pageFilter$:BehaviorSubject<number | void>;
+	public apiUrl: string = 'https://developers.zomato.com/api/v2.1';
+  	public apiKey: string = "dc02cf53cca4e18093ce0b1d7dac9957";
 
   	constructor(
 		public http : HttpClient
 	) {
-		this.categoryFilter$ = new BehaviorSubject('');
-    	this.pageFilter$ = new BehaviorSubject(0);
+
 	}
 
-	getAllData()  {
-		let header = this.buildHeader();
-		return this.http.get(this.API, { headers: header });
+	// Đoạn <{ categories: Array<any>}> là mô tả dạng dữ liệu của cái lấy về :))? xong bên dưới .categories mới ko lỗi
+	getAllCategories()  {
+		return this.http.get<{ categories: Array<any>}>(this.buildApiUrl('categories'), { headers: this.buildHeader() })
+						.pipe(map(data => {
+							return data.categories.map(cate => {
+								return cate.categories
+							})
+						}));
 	}
 
+	getAllRestaurants() {
 
-	private buildHeader(): HttpHeaders {
+	}
+
+	// Create apiURL for every target
+	private buildApiUrl(target) {
+		return `${this.apiUrl}/${target}`;
+	}
+
+	private buildHeader() : HttpHeaders {
 		let header = new HttpHeaders().set('user-key', this.apiKey);
 		return header;
 	}
-}
-export class Restaurant{
-    id:string;
-    name:string;
-    cuisines:string;
-    photos_url:string;
 }
 
 export class Category {
