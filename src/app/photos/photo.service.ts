@@ -10,7 +10,7 @@ import { map  } from 'rxjs/operators';
 export class PhotoService {
 
 	public apiUrl: string = 'https://developers.zomato.com/api/v2.1';
-  	public apiKey: string = "dc02cf53cca4e18093ce0b1d7dac9957";
+  	public apiKey: string = 'dc02cf53cca4e18093ce0b1d7dac9957';
 
   	constructor(
 		public http : HttpClient
@@ -36,11 +36,21 @@ export class PhotoService {
 						}));
 	}
 
+	getRestaurantById(id: number) {
+		return this.http.get<{ restaurants: Array<any>}>(this.buildApiUrl('restaurant'), { 
+			headers: this.buildHeader(),
+			params: new HttpParams({
+		      fromString: `res_id=${id}`
+		    })
+		})
+	}
+
 	// Create apiURL for every endpoint
 	private buildApiUrl(endpoint) {
 		return `${this.apiUrl}/${endpoint}`;
 	}
 
+// tslint:disable-next-line: typedef-whitespace
 	private buildHeader() : HttpHeaders {
 		let header = new HttpHeaders().set('user-key', this.apiKey);
 		return header;

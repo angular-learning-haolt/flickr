@@ -26,7 +26,7 @@ export class PhotoListComponent implements OnInit {
 	getAllRestaurants() {
 		this.photoService.getAllRestaurants().subscribe(data => {
 			this.restaurants = data;
-			console.log(data);
+			// console.log(data);
 		})
 	}
 }

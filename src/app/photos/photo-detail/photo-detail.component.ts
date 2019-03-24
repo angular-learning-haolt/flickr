@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PhotoService } from './../photo.service';
 
 @Component({
 	selector: 'app-photo-detail',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoDetailComponent implements OnInit {
 
-	constructor() { }
+	public curentRestaurant :any;
+
+	constructor(
+		private activatedRoute : ActivatedRoute,
+		private photoService : PhotoService
+	) { }
 
 	ngOnInit() {
+		this.getCurrentRestaurant();
 	}
 
+	getCurrentRestaurant() {
+		let curentID : number = (+this.activatedRoute.snapshot.params.id);
+		this.photoService.getRestaurantById(curentID).subscribe(data => {
+			this.curentRestaurant = data;
+		});
+	}
 }
