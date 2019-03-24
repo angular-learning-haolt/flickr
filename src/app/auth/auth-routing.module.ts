@@ -19,7 +19,7 @@ const authRoutes: Routes = [
 				component: SignupComponent
 			}
 	  	]
-	  }
+	}
 	
 ];
 

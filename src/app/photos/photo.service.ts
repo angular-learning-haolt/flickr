@@ -19,7 +19,8 @@ export class PhotoService {
 	}
 
 	// Đoạn <{ categories: Array<any>}> là mô tả dạng dữ liệu của cái lấy về :))? xong bên dưới .categories mới ko lỗi
-	getAllCategories()  {
+	// Nhưng tại sao nó lại để Observable là <Array<Category>> chứ?
+	getAllCategories(): Observable<Array<Category>> {
 		return this.http.get<{ categories: Array<any>}>(this.buildApiUrl('categories'), { headers: this.buildHeader() })
 						.pipe(map(data => {
 							return data.categories.map(cate => {
@@ -29,12 +30,15 @@ export class PhotoService {
 	}
 
 	getAllRestaurants() {
-
+		return this.http.get<{ restaurants: Array<any>}>(this.buildApiUrl('search'), { headers: this.buildHeader() })
+						.pipe(map(data => {
+							return data.restaurants;
+						}));
 	}
 
-	// Create apiURL for every target
-	private buildApiUrl(target) {
-		return `${this.apiUrl}/${target}`;
+	// Create apiURL for every endpoint
+	private buildApiUrl(endpoint) {
+		return `${this.apiUrl}/${endpoint}`;
 	}
 
 	private buildHeader() : HttpHeaders {

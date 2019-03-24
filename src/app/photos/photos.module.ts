@@ -7,11 +7,12 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotoDetailComponent } from './photo-detail/photo-detail.component';
 
 import { PhotoService } from './photo.service';
+import { PhotosComponent } from './photos/photos.component';
 
 @NgModule({
 	declarations: [
 		PhotoListComponent, 
-		PhotoDetailComponent
+		PhotoDetailComponent, PhotosComponent
 	],
 	imports: [
 		CommonModule,
