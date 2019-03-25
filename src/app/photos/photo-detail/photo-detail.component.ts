@@ -10,6 +10,7 @@ import { PhotoService } from './../photo.service';
 export class PhotoDetailComponent implements OnInit {
 
 	public curentRestaurant :any;
+	public rating :number;
 
 	constructor(
 		private activatedRoute : ActivatedRoute,
@@ -24,6 +25,8 @@ export class PhotoDetailComponent implements OnInit {
 		let curentID : number = (+this.activatedRoute.snapshot.params.id);
 		this.photoService.getRestaurantById(curentID).subscribe(data => {
 			this.curentRestaurant = data;
+			console.log(data);
+			this.rating = data['user_rating'].aggregate_rating;
 		});
 	}
 }
