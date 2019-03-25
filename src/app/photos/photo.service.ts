@@ -45,6 +45,18 @@ export class PhotoService {
 		})
 	}
 
+	getRestaurantByCategory(id: number) {
+		return this.http.get<{ restaurants: Array<any>}>(this.buildApiUrl('search'), { 
+							headers: this.buildHeader(),
+							params: new HttpParams({
+						      fromString: `category=${id}&count=10`
+						    })
+						})
+						.pipe(map(data => {
+							return data.restaurants;
+						}));
+	}
+
 	// Create apiURL for every endpoint
 	private buildApiUrl(endpoint) {
 		return `${this.apiUrl}/${endpoint}`;

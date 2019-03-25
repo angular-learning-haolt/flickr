@@ -9,24 +9,37 @@ import { PhotoService } from './../photo.service';
 export class PhotoListComponent implements OnInit {
 
 	public restaurants : any[];
+	public categories : any[];
+	public categoryId : number = 0;
 
 	constructor(
 		private photoService : PhotoService
 	) { }
 
 	ngOnInit() {
-		// this.getCategoriesList();
+		this.getCategoriesList();
 		this.getAllRestaurants();
 	}
 
 	getCategoriesList() {
-		this.photoService.getAllCategories().subscribe(data => console.log(data))
+		this.photoService.getAllCategories().subscribe(data => {
+			this.categories = data;
+			console.log(data)
+		})
 	}
 
 	getAllRestaurants() {
 		this.photoService.getAllRestaurants().subscribe(data => {
 			this.restaurants = data;
-			// console.log(data);
 		})
+	}
+
+	onSearch() {
+		if (this.categoryId !== 0) {
+			this.photoService.getRestaurantByCategory(+this.categoryId).subscribe(data => {
+				this.restaurants = data;
+				console.log(this.restaurants)
+			});
+		}	
 	}
 }

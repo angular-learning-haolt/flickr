@@ -22,5 +22,45 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="col-md-4">
+			<form>
+				<h3>Search</h3>
+				<!-- <div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" name="name" 
+						[(ngModel)]="name"
+						[ngModelOptions]="{standalone: true}"
+					>
+				</div> -->
+				<div class="form-group">
+					<label>Category</label>
+					<select name="category" class="form-control"
+						[(ngModel)]="categoryId"
+						[ngModelOptions]="{standalone: true}"
+						(change)="onSearch()"
+					>
+						<option value="0" >
+							All Categories
+						</option>
+						<option *ngFor="let category of categories" value="{{ category.id }}" >
+							{{ category.name }}
+						</option>
+					</select>
+				</div>
+				<!-- <div class="form-group">
+					<label>Price</label>
+					<input type="number" class="form-control" name="price" 
+						[(ngModel)]="price"
+						[ngModelOptions]="{standalone: true}"
+						(keydown)="onSearch()"
+					>
+				</div> -->
+				<button type="button" class="btn btn-primary btn-block"
+					(click)="onSearch()"
+				>
+					Search
+				</button>
+			</form>
+		</div>
 	</div>
 </div>
