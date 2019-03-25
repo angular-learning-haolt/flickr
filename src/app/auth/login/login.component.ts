@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
 			name: name,
 			password: password
 		};
+
 		console.log(name, password);
+		
 		if (name == 'admin' && password == 'admin') {
 			localStorage.setItem('user', JSON.stringify(user));
 			this.router.navigate(['photos']);
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
 
 	checkLogin() {
 		if (localStorage.getItem('user')) {
-			this.router.navigate(['']);
+			this.router.navigate(['photos']);
 		}
 	}
 }
