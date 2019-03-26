@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LoginService } from './../login.service';
+
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
@@ -8,10 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-	// public hasError : boolean = false;
+	public hasLogin : string = '0';
 
 	constructor(
-		private router : Router
+		private router : Router,
+		private loginService : LoginService
 	) { }
 
 	ngOnInit() {
@@ -24,10 +27,11 @@ export class LoginComponent implements OnInit {
 		users.map((user) => {
 			if (user.name === name && user.password === password ) {
 				this.router.navigate(['photos']);
-				// this.hasError = true;
-				localStorage.setItem('hasLogin', '1');
+				this.hasLogin = '1';
+				localStorage.setItem('hasLogin', this.hasLogin);
 			}
 		});
-
+		this.loginService.addCard();
+		this.loginService.changeStatusToLogin();
 	}
 }

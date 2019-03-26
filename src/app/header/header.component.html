@@ -26,23 +26,16 @@
             <div class="authen">
                  <button class="btn btn-dark authen__login"
                     [routerLink]="'auth/login'"
+                    *ngIf="hasLogin === '0'"
                 >
                     Login
                 </button>
-                <!-- <ng-container *ngIf="!hasLogin; else caseLogOut">
-                    <button class="btn btn-dark authen__login"
-                        [routerLink]="'auth/login'"
-                    >
-                        Login
-                    </button>
-                </ng-container>
-                <ng-template #caseLogOut>
-                    <button class="btn btn-dark authen__login"
-                        (click)="onLogOut()"
-                    >
-                        Logout
-                    </button>
-                </ng-template> -->
+                 <button class="btn btn-dark authen__logout"
+                 (click)="onLogOut()"
+                 *ngIf="hasLogin === '1'"
+                >
+                    Log Out
+                </button>
                 <button class="btn btn-primary"
                     [routerLink]="'auth/signup'"
                 >

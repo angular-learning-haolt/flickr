@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './../auth/login.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-header',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
 	public navs: Array<{ title: string, route: string }>;
-	public hasLogin : boolean = false;
+	public hasLogin : string = '0';
 
-	constructor() { }
+	constructor(
+		public loginService : LoginService,
+		public router : Router,
+	) { }
 
 	ngOnInit() {
 		this.navs = [
@@ -21,23 +26,16 @@ export class HeaderComponent implements OnInit {
 			{
 				title: 'Photo Stories',
 				route: 'photos'
-			},
-			// {
-			// 	title: 'My Souls',
-			// 	route: 'my-souls'
-			// }
+			}
 		];
-		// this.checkLogin();
+		this.loginService.getStatusLogin().subscribe((data) => {
+			this.hasLogin = data;
+		});
 	}
 
 	onLogOut() {
-		localStorage.removeItem('user');
+		this.hasLogin = '0';
+		localStorage.setItem('hasLogin','0');
+		this.router.navigate(['']);
 	}
-
-	// checkLogin() {
-	// 	if (localStorage.getItem('user')) {
-	// 		this.hasLogin = true
-	// 	}
-	// }
-
 }

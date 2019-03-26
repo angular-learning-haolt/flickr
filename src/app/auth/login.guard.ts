@@ -18,7 +18,7 @@ export class LoginGuard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): boolean {
-        if (localStorage.getItem('hasLogin')) {
+        if (localStorage.getItem('hasLogin') === '1') {
             this.router.navigate(['']);
             return false;
         }
