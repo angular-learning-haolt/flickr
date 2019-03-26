@@ -27,9 +27,9 @@ const routes: Routes = [
 	{
 		path:'photos',
 		loadChildren:'./photos/photos.module#PhotosModule',
-		// canActivate: [
-		// 	AuthGuard
-		// ]
+		canActivate: [
+			AuthGuard
+		]
 	},
 	{
 		path:'**',

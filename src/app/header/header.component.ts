@@ -22,10 +22,10 @@ export class HeaderComponent implements OnInit {
 				title: 'Photo Stories',
 				route: 'photos'
 			},
-			{
-				title: 'My Souls',
-				route: 'my-souls'
-			}
+			// {
+			// 	title: 'My Souls',
+			// 	route: 'my-souls'
+			// }
 		];
 		// this.checkLogin();
 	}

@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthComponent } from './auth/auth.component';
 
+import { LoginGuard } from './login.guard';
+
 const authRoutes: Routes = [
 	{
 		path:'',
@@ -12,7 +14,10 @@ const authRoutes: Routes = [
 		children: [
 			{ 
 				path: 'login',
-				component: LoginComponent
+				component: LoginComponent,
+				canActivate: [
+					LoginGuard
+				]
 			},
 			{ 
 				path: 'signup',
