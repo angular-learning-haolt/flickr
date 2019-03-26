@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
 	) {}
 	ngOnInit() {
 		localStorage.setItem('users', JSON.stringify([{ name: 'admin', password: '123' }]));
-		this.loginService.getCart().subscribe((data) => {
-			console.log(data)
-		});
+		// this.loginService.getCart().subscribe((data) => {
+		// 	console.log(data)
+		// });
 		this.loginService.getStatusLogin().subscribe((data) => {
 			console.log(data)
 		});

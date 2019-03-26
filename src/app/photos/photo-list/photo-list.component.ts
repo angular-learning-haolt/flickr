@@ -24,7 +24,6 @@ export class PhotoListComponent implements OnInit {
 	getCategoriesList() {
 		this.photoService.getAllCategories().subscribe(data => {
 			this.categories = data;
-			// console.log(data)
 		})
 	}
 
@@ -38,7 +37,6 @@ export class PhotoListComponent implements OnInit {
 		if (this.categoryId !== 0) {
 			this.photoService.getRestaurantByCategory(+this.categoryId).subscribe(data => {
 				this.restaurants = data;
-				// console.log(this.restaurants)
 			});
 		}	
 	}

@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		// this.checkLogin();
 	}
 
 	onLogin( name: string, password : string) {
@@ -31,7 +30,7 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('hasLogin', this.hasLogin);
 			}
 		});
-		this.loginService.addCard();
+		// this.loginService.addCard();
 		this.loginService.changeStatusToLogin();
 	}
 }
